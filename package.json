@@ -1,0 +1,29 @@
+{
+  "name": "motobike-manage-source",
+  "version": "1.0.0",
+  "description": "Project 2",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/minhvudang/motobike-manager-source"
+  },
+  "dependencies": {
+    "shortid": "^2.2.6",
+    "object-assign": "^4.1.0",
+    "keymirror": "~0.1.0",
+    "mysql": "^2.10.2",
+    "config": "^1.19.0",
+    "sequelize": "^3.29.0",
+    "object-diff": "^0.0.3",
+    "no-kafka": "^3.1.0",
+    "async": "^2.1.4",
+    "node-validator": "^0.1.26",
+    "specification": "^0.1.0",
+    "express": "^4.14.0",
+    "compression": "^1.6.2",
+    "body-parser": "~1.16.0",
+    "express-api-queryhandler": "^0.4.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
+}
