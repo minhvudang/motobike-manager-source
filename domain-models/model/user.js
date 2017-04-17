@@ -2,7 +2,7 @@ var shortid = require('shortid');
 var objectAssign = require('object-assign');
 var validator = require('node-validator');
 var diff = require('object-diff');
-var rules = require('../../rules/user-rules');
+var rules = require('../rules/user-rules');
 
 var User = function (params) {
     var self = this;

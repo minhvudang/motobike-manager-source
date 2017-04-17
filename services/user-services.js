@@ -1,4 +1,4 @@
-var User = require('../../domain-models/user');
+var User = require('../domain-models/model/user');
 
 var UserService = function (userRepository, messageProducer) {
     this.userRepository = userRepository;
@@ -25,13 +25,17 @@ UserService.prototype.create = function (userProps, callback) {
     });
 }
 
-UserService.prototype.update = function (userProps, callback) {
+UserService.prototype.update = function (username, password, newPassword, callback) {
     var self = this;
     var userObj = null;
     var userInstance = null;
     var changedPropsObj = null;
+    var change = null;
 
-    self.userRepository.findById(userProps.id, function (err, userObj) {
+    change.userName = userName;
+    change.password = newPassword;
+
+    self.userRepository.findUser(username, password, function (err, userObj) {
         if (err) return callback(err);
         else if (!userObj) return callback({
             type: 'Not Found'
@@ -39,7 +43,7 @@ UserService.prototype.update = function (userProps, callback) {
 
         try {
             userInstance = new User(userObj);
-            changedPropsObj = userInstance.update(userProps);
+            changedPropsObj = userInstance.update(change);
         } catch (err) {
             return callback({
                 type: 'Bad Request',

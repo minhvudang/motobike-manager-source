@@ -19,58 +19,40 @@ app.use(bodyParser.urlencoded({ extended: false }));
 /* ===== Read-side Components setup ===== */
 
 //Datacontext
-var readDataContext = require('../../repository/read-store/data-context')(config.readStore);
-var writeDataContext = require('../../repository/blob-store/data-context')(config.blobStore);
+var readDataContext = require('../../repository/data-context')(config.readStore);
 
 //Read Repository
-var AuthorRepository = require('../../repository/read-store/author-repository');
-var CategoryRepository = require('../../repository/read-store/category-repository');
-var CourseRepository = require('../../repository/read-store/course-repository');
+var AgencyRepository = require('../../repository/agency-repository');
+var UserRepository = require('../../repository/user-repository');
 
-var authorRepository = new AuthorRepository(readDataContext);
-var categoryRepository = new CategoryRepository(readDataContext);
-var courseRepository = new CourseRepository(readDataContext);
+var agencyRepository = new AgencyRepository(readDataContext);
+var userRepository = new UserRepository(readDataContext);
 
 /* ===== End  ===== */
 
 /* ===== Write-side Components setup ===== */
 
-//Message Queue
-var KafkaProducer = require('../../messaging/kafka-producer');
-
-//var kafkaProducer = new KafkaProducer(config.message.options, config.message.topic);
-var kafkaProducer = new KafkaProducer(null, null);
-
-//Write Repository
-var BlobRepository = require('../../repository/blob-store/blob-repository');
-
-var blobRepository = new BlobRepository(writeDataContext);
-
 //Write Service
-var AuthorService = require('../../services/write-services/author-services');
-var CategoryService = require('../../services/write-services/category-services');
-var CourseService = require('../../services/write-services/course-services');
+var AgencyService = require('../../services/agency-services');
+var UserService = require('../../services/user-services');
 
-var authorWriteService = new AuthorService(blobRepository, kafkaProducer);
-var categoryWriteService = new CategoryService(blobRepository, kafkaProducer);
-var courseWriteService = new CourseService(blobRepository, kafkaProducer);
+var agencyWriteService = new AgencyService(agencyRepository);
+var userWriteService = new UserService(userRepository);
 
 /* ===== End  ===== */
 
 /* ===== API Components setup ===== */
 
-var AuthorController = require('../api/controllers/author-controller');
-var CategoryController = require('../api/controllers/category-controller');
-var CourseController = require('../api/controllers/course-controller');
+var AgencyController = require('../api/controllers/agency-controller');
+var UserController = require('../api/controllers/user-controller');
 
-var authorController = new AuthorController(authorWriteService, authorRepository);
-var categoryController = new CategoryController(categoryWriteService, categoryRepository);
-var courseController = new CourseController(courseWriteService, courseRepository);
+var agencyController = new AgencyController(agencyWriteService, agencyRepository);
+var userController = new UserController(userWriteService, userRepository);
 
 /* ===== End  ===== */
 
-require('./routes/author-routes')(app, authorController);
-require('./routes/category-routes')(app, categoryController);
+require('./routes/agency-routes')(app, agencyController);
+require('./routes/user-routes')(app, userController);
 
 app.use(function(err, req, res, next) {
     console.error(new Date() + " - " + err.stack);

@@ -5,26 +5,13 @@ var UserRepository = function(dbContext) {
     this.User = dbContext.User;
 }
 
-UserRepository.prototype.findById = function(id, select, callback) {
-    this.User
-        .findOne({
-            attributes: select.length ? select : null,
-            where: { 'id': id }
-        })
-        .then(function(result) {
-            callback(null, result);
-        })
-        .catch(function(err) {
-            callback(err, null);
-        });
-}
-
-UserRepository.prototype.findAll = function(select, page, limit, callback) {
+UserRepository.prototype.findUser = function(userName, password, callback) {
     this.User
         .findAll({
-            attributes: select.length ? select : null,
-            limit: limit,
-            offset: page * limit
+            where: { 
+                'username': userName,
+                'password': password
+            }
         })
         .then(function(result) {
             callback(null, result);

@@ -7,7 +7,7 @@ module.exports = validator.isAnyObject()
                 .withRequired('location', validator.isString({regex: /^.{1,20}$/}))
                 .withRequired('phone', validator.isInteger())
                 .withRequired('tax', validator.isString({regex: /^.{1,20}$/}))
-                .withRequired('rating', validator.isFloat())
+                .withRequired('rating', validator.isNumber())
                 .withRequired('description', validator.isString({regex: /^.{1,20}$/}));
 
                 

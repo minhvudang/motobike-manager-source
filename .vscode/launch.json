@@ -4,62 +4,9 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceRoot}/app.js",
-            "cwd": "${workspaceRoot}"
-        },
-        {
-            "type": "node",
-            "request": "attach",
-            "name": "Attach to Process",
-            "port": 5858
-        },
-        {
-            "name": "Kafka Integration Test",
-            "type": "node",
-            "request": "launch",
-            "program": "${workspaceRoot}/tests/kafka-message-tests/consumer-integration-tests.js",
-            "cwd": "${workspaceRoot}"
-        },
-        {
-			"name": "Run mocha",
-			"type": "node",
-            "request": "launch",
-			"program": "/usr/local/lib/node_modules/mocha/bin/_mocha",
-			"stopOnEntry": false,
-			"args": ["tests/api-tests/category-api-test.js"],
-			"cwd": "${workspaceRoot}",
-			"runtimeExecutable": null,
-			"env": { "NODE_ENV": "local"}
-		},
-         {
-			"name": "Run mocha-window",
-			"type": "node",
-            "request": "launch",
-			"program": "C:/Users/user/AppData/Roaming/npm/node_modules/mocha/bin/_mocha",
-			"stopOnEntry": false,
-			"args": ["tests/service-tests/write-side/course-services-test.js"],
-			"cwd": "${workspaceRoot}",
-			"runtimeExecutable": null,
-			"env": { "NODE_ENV": "local"}
-		},
-        {
-			"name": "Run mocha-window",
-			"type": "node",
-            "request": "launch",
-			"program": "C:/Users/Hoang/AppData/Roaming/npm/node_modules/mocha/bin/_mocha",
-			"stopOnEntry": false,
-			"args": ["tests/repository-integration-tests/blob-store/blob-repository-test.js"],
-			"cwd": "${workspaceRoot}",
-			"runtimeExecutable": null,
-			"env": { "NODE_ENV": "local"}
-		},
         {   
             "type": "node",
-            "request": "launch-api",
+            "request": "launch",
             "name": "Launch API",
             "program": "${workspaceRoot}/apps/api/app.js",
             "cwd": "${workspaceRoot}",

@@ -2,7 +2,7 @@ var shortid = require('shortid');
 var objectAssign = require('object-assign');
 var validator = require('node-validator');
 var diff = require('object-diff');
-var rules = require('../../rules/agency-rules');
+var rules = require('../rules/agency-rules');
 
 var Service = require('./service');
 
@@ -61,6 +61,54 @@ Agency.prototype.update = function(params) {
 
     return changed;
 }
+
+Agency.prototype.addService = function(serviceProps) {
+    var currentValue = objectAssign({}, this);
+
+    var service = new Unit(serviceProps);
+    this.services.push(service);
+
+    var changed = diff(currentValue, this);
+  
+    return changed;
+}
+
+Agency.prototype.updateService = function(serviceProps) {
+    var currentValue = objectAssign({}, this);
+
+    var service = this.services.find(function(s) { 
+        return s.id == serviceProps.id;
+    });
+
+    if(service) {
+        var changedService = service.update(serviceProps);
+        changedService.id = service.id;
+        
+        var changed = diff(currentValue, this);
+        changed.id = this.id;
+        changed.service = changedService;
+
+        return changed;
+    } else {
+        return null;
+    }
+}
+
+Agency.prototype.deleteService = function(serviceProps) {
+    var currentValue = objectAssign({}, this);
+
+    var serviceIndex = this.services.findIndex(function(s) { 
+        return s.id == serviceProps.id;
+    });
+
+    if(serviceIndex >= 0) {
+        this.services.splice(serviceIndex, 1);
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 function validate(rules, obj) {
     validator.run(rules, obj, function (errorCount, errors) {
