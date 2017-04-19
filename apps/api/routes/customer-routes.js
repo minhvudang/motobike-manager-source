@@ -11,4 +11,7 @@ module.exports = function(app, customerController){
             customerResultMiddleWare.getCustomer)
         .put(customerController.updateCustomer,
             customerResultMiddleWare.updateCustomer);
+    // app.route('/customer/:customerId/service')
+    //     .put(customerController.addService,
+    //         customerResultMiddleWare.addService);
 }

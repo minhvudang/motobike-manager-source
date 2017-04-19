@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
             alowNull: false
         },
         address: {
-            type: DataTypes.STRING(20),
+            type: DataTypes.STRING(50),
             alowNull: false
         },
         location: {
