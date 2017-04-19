@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         tax: {
             type: DataTypes.STRING(20),
-            alowNull: false
+            alowNull: true
         },
         rating: {
             type: DataTypes.FLOAT,

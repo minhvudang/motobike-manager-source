@@ -12,6 +12,9 @@ AgencyRepository.prototype.findById = function(id, select, callback) {
             where: { 'id': id }
         })
         .then(function(result) {
+            if(result.services) {
+                result.services = JSON.parse(result.services);
+            }
             callback(null, result);
         })
         .catch(function(err) {
@@ -19,10 +22,12 @@ AgencyRepository.prototype.findById = function(id, select, callback) {
         });
 }
 
-AgencyRepository.prototype.findAll = function(select, page, limit, callback) {
+AgencyRepository.prototype.findAll = function(condition, orderBy, select, page, limit, callback) {
     this.Agency
         .findAll({
             attributes: select.length ? select : null,
+            where: condition ? condition : null,
+            order: orderBy ? orderBy : null,
             limit: limit,
             offset: page * limit
         })
@@ -36,7 +41,11 @@ AgencyRepository.prototype.findAll = function(select, page, limit, callback) {
 
 AgencyRepository.prototype.save = function(agencyObj, callback) {
     this.Agency
-        .create(agencyObj)
+        .create(objectAssign(
+            {},
+            agencyObj,
+            { services: JSON.stringify(agencyObj.services) }
+        ))
         .then(function(result) {
             callback(null, result);
         })
@@ -47,7 +56,11 @@ AgencyRepository.prototype.save = function(agencyObj, callback) {
 
 AgencyRepository.prototype.update = function(id, agencyObj, callback) {
     this.Agency
-        .update(agencyObj, { 
+        .update(objectAssign(
+            {},
+            agencyObj,
+            { services: JSON.stringify(agencyObj.services) }
+        ), { 
             where: { 'id': id } 
         })
         .then(function(result) {

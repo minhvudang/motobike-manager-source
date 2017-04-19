@@ -11,7 +11,8 @@ module.exports = function(app, agencyController){
             agencyResultMiddleWare.getAgency);
     app.route('/agencies/:agencyId/service')
         .post(agencyController.addService,
-            agencyResultMiddleWare.addService)
+            agencyResultMiddleWare.addService);
+    app.route('/agencies/:agencyId/service/serviceId')
         .put(agencyController.updateService,
             agencyResultMiddleWare.updateService)
         .delete(agencyController.deleteService,

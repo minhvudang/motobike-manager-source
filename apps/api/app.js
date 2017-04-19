@@ -3,7 +3,9 @@ process.env.NODE_ENV = 'local';
 var express = require('express');
 var queryHandler = require('express-api-queryhandler');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var config = require('../../config/config');
+var compress = require('compression');
 
 /* ===== Express setup ===== */
 
@@ -13,6 +15,9 @@ app.use(queryHandler.filter());
 app.use(queryHandler.pagination({limit: 100}));
 app.use(queryHandler.sort());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(compress());
+app.use(cors());
 
 /* ===== End  ===== */
 

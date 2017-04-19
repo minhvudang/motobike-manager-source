@@ -11,6 +11,19 @@
             "program": "${workspaceRoot}/apps/api/app.js",
             "cwd": "${workspaceRoot}",
             "env": { "NODE_ENV": "local"}
+        },
+        {   
+            "type": "node",
+            "request": "launch",
+            "name": "Launch test",
+           "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+            "stopOnEntry": false,
+            "args": [
+                "tests/agency-repository-test.js"
+            ],
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": null,
+            "env": { "NODE_ENV": "local"}
         }
     ] 
 }

@@ -29,11 +29,11 @@ AgencyController.prototype.getAgencies = function (req, res, next) {
     var condition = req.where;
     var orderBy = req.options.sort;
 
-    dependencies.agencyRepository.findAll(condition, orderBy, select, page, limit, function (err, agencys) {
+    dependencies.agencyRepository.findAll(condition, orderBy, select, page, limit, function (err, agencies) {
         if (err) {
             next(err);
         } else {
-            res.agencys = agencys;
+            res.agencies = agencies;
             next();
         }
     });
@@ -56,7 +56,7 @@ AgencyController.prototype.updateAgency = function (req, res, next) {
 AgencyController.prototype.createAgency = function (req, res, next) {
     var agencyObj = req.body;
 
-    dependencies.agencyWriteService.update(agencyObj, function(err, agency) {
+    dependencies.agencyWriteService.create(agencyObj, function(err, agency) {
         if(err) {
             next(err);
         } else {
@@ -71,7 +71,7 @@ AgencyController.prototype.addService = function (req, res,next ) {
 
     var agencyId = req.params.agencyId;
 
-    dependencies.courseWriteService.addService(agencyId, service, function (err, result) {
+    dependencies.agencyWriteService.addService(agencyId, service, function (err, result) {
         if (err) {
             next(err);
         } else {
@@ -86,7 +86,7 @@ AgencyController.prototype.updateService = function (req, res,next ) {
 
     var agencyId = req.params.agencyId;
 
-    dependencies.courseWriteService.updateService(agencyId, service, function (err, result) {
+    dependencies.agencyWriteService.updateService(agencyId, service, function (err, result) {
         if (err) {
             next(err);
         } else {
@@ -101,7 +101,7 @@ AgencyController.prototype.deleteService = function (req, res,next ) {
 
     var agencyId = req.params.agencyId;
 
-    dependencies.courseWriteService.deleteService(agencyId, service, function (err, result) {
+    dependencies.agencyWriteService.deleteService(agencyId, service, function (err, result) {
         if (err) {
             next(err);
         } else {

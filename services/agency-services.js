@@ -30,7 +30,7 @@ AgencyService.prototype.update = function (agencyProps, callback) {
     var agencyInstance = null;
     var changedPropsObj = null;
 
-    self.agencyRepository.findById(agencyProps.id, function (err, agencyObj) {
+    self.agencyRepository.findById(agencyProps.id, null, function (err, agencyObj) {
         if (err) return callback(err);
         else if (!agencyObj) return callback({
             type: 'Not Found'
@@ -60,22 +60,21 @@ AgencyService.prototype.update = function (agencyProps, callback) {
 AgencyService.prototype.addService = function (agencyId ,serviceProps, callback) {
     var self = this;
 
-    var agencyObj = null;
     var agencyInstance = null;
     var changedPropsObj = null;
 
-    self.agencyRepository.findById(agencyId, null , function (err, agencyObj) {
+    self.agencyRepository.findById(agencyId, [] , function (err, agencyObj) {
         if (err) return callback(err);
         else if (!agencyObj) return callback(null, null);
-
+        console.log(agencyObj.services[0]);
         try {
-            agencyInstance = new Course(agencyObj);
+            agencyInstance = new Agency(agencyObj);
             changedPropsObj = agencyInstance.addService(serviceProps);
         } catch (err) {
             return callback(err);
         };
 
-        self.agencyRepository.update(courseInstance.id , courseInstance, function (err, result) {
+        self.agencyRepository.update(agencyInstance.id , agencyInstance, function (err, result) {
             if (err) return callback(err);
             if (!result) return callback({
                 type: 'Request Failed'
@@ -92,12 +91,12 @@ AgencyService.prototype.updateService = function (agencyId, serviceProps, callba
     var agencyInstance = null;
     var changedPropsObj = null;
 
-    self.agencyRepository.find(agencyId, null, function (err, agencyObj) {
+    self.agencyRepository.findById(agencyId, [], function (err, agencyObj) {
         if (err) return callback(err);
         else if (!courseObj) return callback(null, null);
 
         try {
-            agencyInstance = new Course(agencyObj);
+            agencyInstance = new Agency(agencyObj);
             changedPropsObj = agencyInstance.updateChapter(serviceProps);
         } catch (err) {
             return callback(err);
@@ -125,7 +124,7 @@ AgencyService.prototype.deleteService = function (agencyId, serviceProps, callba
     var agencyInstance = null;
     var changedPropsObj = null;
 
-    self.agencyRepository.find(agencyId, null, function (err, agencyObj) {
+    self.agencyRepository.findById(agencyId, [], function (err, agencyObj) {
         if (err) return callback(err);
         else if (!courseObj) return callback(null, null);
 

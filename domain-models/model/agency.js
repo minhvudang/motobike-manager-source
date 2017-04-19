@@ -7,11 +7,21 @@ var rules = require('../rules/agency-rules');
 var Service = require('./service');
 
 var Agency = function(params) {
+    console.log(params.id);
     var self = this;
     var props = objectAssign({
         id: shortid.generate(),
-        avatar: '',
-    }, params);
+        services: []
+    }, { id: params.id, 
+        name: params.name, 
+        avatar: params.avatar, 
+        address: params.address, 
+        location: params.location, 
+        phone: params.phone, 
+        tax: params.tax, 
+        rating: params.rating, 
+        description: params.description, 
+        services: params.services });
 
     this.id = props.id;
     this.name = props.name;
@@ -22,10 +32,7 @@ var Agency = function(params) {
     this.tax = props.tax;
     this.rating = props.rating;
     this.description = props.description;
-    this.services = props.services.map(function(service) {
-        var s = new Service(service);
-        return s;
-    });
+    this.services = props.services;
 
     validate(rules, self);
 }
@@ -65,7 +72,7 @@ Agency.prototype.update = function(params) {
 Agency.prototype.addService = function(serviceProps) {
     var currentValue = objectAssign({}, this);
 
-    var service = new Unit(serviceProps);
+    var service = new Service(serviceProps);
     this.services.push(service);
 
     var changed = diff(currentValue, this);
