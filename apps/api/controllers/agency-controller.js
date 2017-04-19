@@ -69,14 +69,19 @@ AgencyController.prototype.createAgency = function (req, res, next) {
 
 AgencyController.prototype.getService = function (req, res,next ) {
     var serviceId = req.params.serviceId;
-
     var agencyId = req.params.agencyId;
 
-    dependencies.agencyWriteService.getService(agencyId, serviceId, function (err, result) {
+    var select = req.fields ? req.fields.split(" ") : [];
+
+    dependencies.agencyRepository.findById(agencyId, [], function (err, result) {
         if (err) {
             next(err);
         } else {
-            res.result = result;
+            var service = result.services.find(function(s) { 
+                return s.id == serviceId;
+            });
+
+            res.service = service;
             next();
         }
     });

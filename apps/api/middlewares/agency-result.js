@@ -18,6 +18,17 @@ exports.getAgencies = function(req, res) {
     }
 }
 
+exports.getService = function(req, res) {
+    if(res.service) {
+        return res.status(200).send(res.service);
+    } else {
+        return res.status(404).send({
+            result: false,
+            msg: 'nothing to created'
+        })
+    }
+}
+
 exports.createAgency = function(req, res) {
     if(res.agency) {
         return res.status(200).send(res.agency);
