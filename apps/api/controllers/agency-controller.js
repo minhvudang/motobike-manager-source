@@ -97,11 +97,11 @@ AgencyController.prototype.updateService = function (req, res,next ) {
 }
 
 AgencyController.prototype.deleteService = function (req, res,next ) {
-    var service = req.body;
+    var serviceId = req.params.serviceId;
 
     var agencyId = req.params.agencyId;
 
-    dependencies.agencyWriteService.deleteService(agencyId, service, function (err, result) {
+    dependencies.agencyWriteService.deleteService(agencyId, serviceId, function (err, result) {
         if (err) {
             next(err);
         } else {

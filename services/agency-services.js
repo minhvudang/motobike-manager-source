@@ -93,11 +93,11 @@ AgencyService.prototype.updateService = function (agencyId, serviceProps, callba
 
     self.agencyRepository.findById(agencyId, [], function (err, agencyObj) {
         if (err) return callback(err);
-        else if (!courseObj) return callback(null, null);
+        else if (!agencyObj) return callback(null, null);
 
         try {
             agencyInstance = new Agency(agencyObj);
-            changedPropsObj = agencyInstance.updateChapter(serviceProps);
+            changedPropsObj = agencyInstance.updateService(serviceProps);
         } catch (err) {
             return callback(err);
         };
@@ -117,7 +117,7 @@ AgencyService.prototype.updateService = function (agencyId, serviceProps, callba
     });
 }
 
-AgencyService.prototype.deleteService = function (agencyId, serviceProps, callback) {
+AgencyService.prototype.deleteService = function (agencyId, serviceId, callback) {
     var self = this;
 
     var agencyObj = null;
@@ -126,11 +126,11 @@ AgencyService.prototype.deleteService = function (agencyId, serviceProps, callba
 
     self.agencyRepository.findById(agencyId, [], function (err, agencyObj) {
         if (err) return callback(err);
-        else if (!courseObj) return callback(null, null);
+        else if (!agencyObj) return callback(null, null);
 
         try {
-            agencyInstance = new Course(agencyObj);
-            changedPropsObj = agencyInstance.deleteService(serviceProps);
+            agencyInstance = new Agency(agencyObj);
+            changedPropsObj = agencyInstance.deleteService(serviceId);
         } catch (err) {
             return callback(err);
         };

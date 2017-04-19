@@ -5,14 +5,12 @@ var DataContext = function(config) {
 
     var Agency = sequelize.import('./models/agency');
     var Customer = sequelize.import('./models/customer');
-    var Maintanance = sequelize.import('./models/maintanance');
-    var Yogurt = sequelize.import('./models/yogurt');
+    var User = sequelize.import('./models/user');
 
     return {
         Agency : Agency,
         Customer : Customer,
-        Maintanance : Maintanance,
-        Yogurt : Yogurt,
+        User: User,
         sequelize: sequelize
     }
 }

@@ -10,16 +10,12 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING(14),
             alowNull: false
         },
-        motorbikeMaker: {
+        produce: {
             type: DataTypes.STRING(30),
             alowNull: false
         },
-        motorbikeName: {
+        motoType: {
             type: DataTypes.STRING(30),
-            alowNull: false
-        },
-        numberOfKmWent: {
-            type: DataTypes.INTEGER,
             alowNull: false
         },
         address: {
@@ -27,6 +23,10 @@ module.exports = function(sequelize, DataTypes) {
             alowNull: false
         },
         phoneNumber: {
+            type: DataTypes.INTEGER(12),
+            alowNull: false
+        },
+        agencies: {
             type: DataTypes.STRING(12),
             alowNull: false
         }

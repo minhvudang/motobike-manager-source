@@ -88,12 +88,11 @@ Agency.prototype.updateService = function(serviceProps) {
     });
 
     if(service) {
-        var changedService = service.update(serviceProps);
-        changedService.id = service.id;
+        service = objectAssign(service, serviceProps);
         
         var changed = diff(currentValue, this);
         changed.id = this.id;
-        changed.service = changedService;
+        changed.service = service;
 
         return changed;
     } else {
@@ -101,11 +100,11 @@ Agency.prototype.updateService = function(serviceProps) {
     }
 }
 
-Agency.prototype.deleteService = function(serviceProps) {
+Agency.prototype.deleteService = function(servicePropsId) {
     var currentValue = objectAssign({}, this);
 
     var serviceIndex = this.services.findIndex(function(s) { 
-        return s.id == serviceProps.id;
+        return s.id == servicePropsId;
     });
 
     if(serviceIndex >= 0) {

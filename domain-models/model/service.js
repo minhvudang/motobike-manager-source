@@ -22,33 +22,33 @@ var Service = function (params) {
     validate(rules, self);
 }
 
-Service.prototype.update = function (params) {
-    var self = this;
-    var currentValue = objectAssign({}, this);
+// Service.prototype.update = function (params) {
+//     var self = this;
+//     var currentValue = objectAssign({}, this);
 
-    var props = objectAssign({
-        name: this.name,
-        image: this.image,
-        price: this.price,
-        type: this.type,
-        total: this.total,
-        sale: this.sale
-    }, params);
+//     var props = objectAssign({
+//         name: this.name,
+//         image: this.image,
+//         price: this.price,
+//         type: this.type,
+//         total: this.total,
+//         sale: this.sale
+//     }, params);
 
-    self.name = props.name;
-    self.image = props.image;
-    self.price = props.price;
-    self.type = props.type;
-    self.total = props.total;
-    self.sale = props.sale;
+//     self.name = props.name;
+//     self.image = props.image;
+//     self.price = props.price;
+//     self.type = props.type;
+//     self.total = props.total;
+//     self.sale = props.sale;
 
-    validate(rules, self);
+//     validate(rules, self);
 
-    var changed = diff(currentValue, self);
-    changed.id = this.id;
+//     var changed = diff(currentValue, self);
+//     changed.id = this.id;
 
-    return changed;
-}
+//     return changed;
+// }
 
 function validate(rules, obj) {
     validator.run(rules, obj, function (errorCount, errors) {

@@ -11,10 +11,10 @@ module.exports = function(app, agencyController){
             agencyResultMiddleWare.getAgency);
     app.route('/agencies/:agencyId/service')
         .post(agencyController.addService,
-            agencyResultMiddleWare.addService);
-    app.route('/agencies/:agencyId/service/serviceId')
+            agencyResultMiddleWare.addService)
         .put(agencyController.updateService,
-            agencyResultMiddleWare.updateService)
+            agencyResultMiddleWare.updateService);
+    app.route('/agencies/:agencyId/service/:serviceId')        
         .delete(agencyController.deleteService,
             agencyResultMiddleWare.deleteService);
 }

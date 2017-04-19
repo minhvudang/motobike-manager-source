@@ -36,9 +36,36 @@ CustomerRepository.prototype.findAll = function(select, page, limit, callback) {
 
 CustomerRepository.prototype.save = function(customerObj, callback) {
     this.Customer
-        .create(customerObj)
+        .create(objectAssign(
+            {},
+            customerObj,
+            { agencies: JSON.stringify(customerObj.agencies) }
+        ))
         .then(function(result) {
             callback(null, result);
+        })
+        .catch(function(err) {
+            callback(err, null);
+        });
+}
+
+CustomerRepository.prototype.update = function(id, customerObj, callback) {
+    this.Customer
+        .update(objectAssign(
+            {},
+            customerObj,
+            { agencies: JSON.stringify(customerObj.agencies) }
+        ), { 
+            where: { 'id': id } 
+        })
+        .then(function(result) {
+            if(result.every(function(val){
+                return val == 1;
+            })){
+                callback(null, true);
+            }else{
+                callback(null, false);
+            }
         })
         .catch(function(err) {
             callback(err, null);
