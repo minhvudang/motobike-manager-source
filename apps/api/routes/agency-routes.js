@@ -8,7 +8,9 @@ module.exports = function(app, agencyController){
               agencyResultMiddleWare.createAgency);
     app.route('/agencies/:agencyId')
         .get(agencyController.getAgency,
-            agencyResultMiddleWare.getAgency);
+            agencyResultMiddleWare.getAgency)
+        .put(agencyController.updateAgency,
+            agencyResultMiddleWare.updateAgency);
     app.route('/agencies/:agencyId/service')
         .post(agencyController.addService,
             agencyResultMiddleWare.addService)

@@ -30,7 +30,7 @@ AgencyService.prototype.update = function (agencyProps, callback) {
     var agencyInstance = null;
     var changedPropsObj = null;
 
-    self.agencyRepository.findById(agencyProps.id, null, function (err, agencyObj) {
+    self.agencyRepository.findById(agencyProps.id, [], function (err, agencyObj) {
         if (err) return callback(err);
         else if (!agencyObj) return callback({
             type: 'Not Found'

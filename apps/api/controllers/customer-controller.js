@@ -29,7 +29,7 @@ CustomerController.prototype.getCustomers = function (req, res, next) {
     var condition = req.where;
     var orderBy = req.options.sort;
 
-    dependencies.customerRepository.findAll(condition, orderBy, select, page, limit, function (err, agencies) {
+    dependencies.customerRepository.findAll(condition, orderBy, select, page, limit, function (err, customers) {
         if (err) {
             next(err);
         } else {

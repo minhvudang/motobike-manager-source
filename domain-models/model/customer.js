@@ -5,10 +5,11 @@ var diff = require('object-diff');
 var rules = require('../rules/customer-rules');
 
 var Customer = function (params) {
-  var props = objectAssign({
+    var self = this;
+    var props = objectAssign({
         id: shortid.generate(),
         agencies: []
-    }, { id: params.id, 
+    }, { 
         name: params.name, 
         produce: params.produce, 
         motoType: params.motoType, 

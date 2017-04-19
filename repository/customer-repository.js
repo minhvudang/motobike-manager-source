@@ -12,20 +12,22 @@ CustomerRepository.prototype.findById = function(id, select, callback) {
             where: { 'id': id }
         })
         .then(function(result) {
-            callback(null, result);
             if(result.agencies) {
                 result.agencies = JSON.parse(result.agencies);
             }
+            callback(null, result);
         })
         .catch(function(err) {
             callback(err, null);
         });
 }
 
-CustomerRepository.prototype.findAll = function(select, page, limit, callback) {
+CustomerRepository.prototype.findAll = function(condition, orderBy, select, page, limit, callback) {
     this.Customer
         .findAll({
             attributes: select.length ? select : {exclude: ['agencies']},
+            where: condition ? condition : null,
+            order: orderBy ? orderBy : null,
             limit: limit,
             offset: page * limit
         })

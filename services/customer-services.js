@@ -56,3 +56,5 @@ CustomerService.prototype.update = function (customerProps, callback) {
         });
     });
 }
+
+module.exports = CustomerService;

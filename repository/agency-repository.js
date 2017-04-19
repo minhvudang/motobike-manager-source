@@ -54,23 +54,17 @@ AgencyRepository.prototype.save = function(agencyObj, callback) {
         });
 }
 
-AgencyRepository.prototype.update = function(id, agencyObj, callback) {
+AgencyRepository.prototype.update = function(agencyObj, callback) {
     this.Agency
         .update(objectAssign(
             {},
             agencyObj,
             { services: JSON.stringify(agencyObj.services) }
         ), { 
-            where: { 'id': id } 
+            where: { 'id': agencyObj.id } 
         })
         .then(function(result) {
-            if(result.every(function(val){
-                return val == 1;
-            })){
                 callback(null, true);
-            }else{
-                callback(null, false);
-            }
         })
         .catch(function(err) {
             callback(err, null);

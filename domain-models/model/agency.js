@@ -7,7 +7,6 @@ var rules = require('../rules/agency-rules');
 var Service = require('./service');
 
 var Agency = function(params) {
-    console.log(params.id);
     var self = this;
     var props = objectAssign({
         id: shortid.generate(),

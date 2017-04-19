@@ -8,5 +8,7 @@ module.exports = function(app, customerController){
               customerResultMiddleWare.createCustomer);
     app.route('/customers/:customerId')
         .get(customerController.getCustomer,
-            customerResultMiddleWare.getCustomer);
+            customerResultMiddleWare.getCustomer)
+        .put(customerController.updateCustomer,
+            customerResultMiddleWare.updateCustomer);
 }

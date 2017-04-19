@@ -46,7 +46,7 @@ var CustomerService = require('../../services/customer-services');
 
 var agencyWriteService = new AgencyService(agencyRepository);
 var userWriteService = new UserService(userRepository);
-var customerWriteService = new UserService(customerRepository);
+var customerWriteService = new CustomerService(customerRepository);
 
 /* ===== End  ===== */
 

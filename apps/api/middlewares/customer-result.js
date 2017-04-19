@@ -28,3 +28,14 @@ exports.createCustomer = function(req, res) {
         })
     }
 }
+
+exports.updateCustomer = function(req, res) {
+    if(res.success) {
+        return res.status(200).send(res.success);
+    } else {
+        return res.status(404).send({
+            result: false,
+            msg: 'nothing to created'
+        })
+    }
+}

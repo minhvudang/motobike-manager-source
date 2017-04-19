@@ -42,8 +42,9 @@ AgencyController.prototype.getAgencies = function (req, res, next) {
 AgencyController.prototype.updateAgency = function (req, res, next) {
     var agencyId = req.params.agencyId;
     var agencyObj = req.body;
+    agencyObj.id = agencyId;
 
-    dependencies.agencyWriteService.update(agencyId, agencyObj, function(err, success) {
+    dependencies.agencyWriteService.update(agencyObj, function(err, success) {
         if(err) {
             next(err);
         } else {

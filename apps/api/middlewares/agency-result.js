@@ -29,6 +29,17 @@ exports.createAgency = function(req, res) {
     }
 }
 
+exports.updateAgency = function(req, res) {
+    if(res.success) {
+        return res.status(200).send(res.success);
+    } else {
+        return res.status(404).send({
+            result: false,
+            msg: 'nothing to created'
+        })
+    }
+}
+
 exports.addService = function(req, res) {
     if(res.result) {
         return res.status(200).send(res.result);
