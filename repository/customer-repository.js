@@ -54,23 +54,17 @@ CustomerRepository.prototype.save = function(customerObj, callback) {
         });
 }
 
-CustomerRepository.prototype.update = function(id, customerObj, callback) {
+CustomerRepository.prototype.update = function(customerObj, callback) {
     this.Customer
         .update(objectAssign(
             {},
             customerObj,
             { agencies: JSON.stringify(customerObj.agencies) }
         ), { 
-            where: { 'id': id } 
+            where: { 'id': customerObj.id } 
         })
         .then(function(result) {
-            if(result.every(function(val){
-                return val == 1;
-            })){
-                callback(null, true);
-            }else{
-                callback(null, false);
-            }
+                callback(null, result);
         })
         .catch(function(err) {
             callback(err, null);

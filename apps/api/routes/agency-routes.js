@@ -13,10 +13,12 @@ module.exports = function(app, agencyController){
             agencyResultMiddleWare.updateAgency);
     app.route('/agencies/:agencyId/service')
         .post(agencyController.addService,
-            agencyResultMiddleWare.addService)
+            agencyResultMiddleWare.addService);
+    app.route('/agencies/:agencyId/service/:serviceId')
+        .get(agencyController.getService,
+            agencyResultMiddleWare.getService)
         .put(agencyController.updateService,
-            agencyResultMiddleWare.updateService);
-    app.route('/agencies/:agencyId/service/:serviceId')        
+            agencyResultMiddleWare.updateService)       
         .delete(agencyController.deleteService,
             agencyResultMiddleWare.deleteService);
 }

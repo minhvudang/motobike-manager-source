@@ -42,8 +42,9 @@ CustomerController.prototype.getCustomers = function (req, res, next) {
 CustomerController.prototype.updateCustomer = function (req, res, next) {
     var customerId = req.params.customerId;
     var customerObj = req.body;
+    customerObj.id = customerId;
 
-    dependencies.customerWriteService.update(customerId, customerObj, function(err, success) {
+    dependencies.customerWriteService.update(customerObj, function(err, success) {
         if(err) {
             next(err);
         } else {

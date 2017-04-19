@@ -74,12 +74,12 @@ AgencyService.prototype.addService = function (agencyId ,serviceProps, callback)
             return callback(err);
         };
 
-        self.agencyRepository.update(agencyInstance.id , agencyInstance, function (err, result) {
+        self.agencyRepository.update(agencyInstance, function (err, result) {
             if (err) return callback(err);
             if (!result) return callback({
                 type: 'Request Failed'
             })
-            return callback(null, changedPropsObj);
+            return callback(null, agencyInstance);
         });
     });
 }
@@ -106,7 +106,7 @@ AgencyService.prototype.updateService = function (agencyId, serviceProps, callba
             type: 'Request Failed'
         })
 
-        self.agencyRepository.update(agencyInstance.id, agencyInstance, function (err, result) {
+        self.agencyRepository.update(agencyInstance, function (err, result) {
             if (err) return callback(err);
             if (!result) return callback({
                 type: 'Request Failed'
@@ -139,7 +139,7 @@ AgencyService.prototype.deleteService = function (agencyId, serviceId, callback)
             type: 'Request Failed'
         })
 
-        self.agencyRepository.update(agencyInstance.id, agencyInstance, function (err, result) {
+        self.agencyRepository.update(agencyInstance, function (err, result) {
             if (err) return callback(err);
             if (!result) return callback({
                 type: 'Request Failed'

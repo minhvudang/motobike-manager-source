@@ -67,6 +67,21 @@ AgencyController.prototype.createAgency = function (req, res, next) {
     });
 }
 
+AgencyController.prototype.getService = function (req, res,next ) {
+    var serviceId = req.params.serviceId;
+
+    var agencyId = req.params.agencyId;
+
+    dependencies.agencyWriteService.getService(agencyId, serviceId, function (err, result) {
+        if (err) {
+            next(err);
+        } else {
+            res.result = result;
+            next();
+        }
+    });
+}
+
 AgencyController.prototype.addService = function (req, res,next ) {
     var service = req.body;
 
@@ -86,6 +101,9 @@ AgencyController.prototype.updateService = function (req, res,next ) {
     var service = req.body;
 
     var agencyId = req.params.agencyId;
+    var serviceId = req.params.serviceId;
+
+    service.id = serviceId;
 
     dependencies.agencyWriteService.updateService(agencyId, service, function (err, result) {
         if (err) {

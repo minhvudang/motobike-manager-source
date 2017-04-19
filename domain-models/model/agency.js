@@ -8,19 +8,37 @@ var Service = require('./service');
 
 var Agency = function(params) {
     var self = this;
-    var props = objectAssign({
-        id: shortid.generate(),
-        services: []
-    }, { id: params.id, 
-        name: params.name, 
-        avatar: params.avatar, 
-        address: params.address, 
-        location: params.location, 
-        phone: params.phone, 
-        tax: params.tax, 
-        rating: params.rating, 
-        description: params.description, 
-        services: params.services });
+    var props = null;
+    console.log(params.id);
+    if (!params.id) {
+        props = objectAssign({
+            id: shortid.generate(),
+            services: []
+        }, { 
+            name: params.name, 
+            avatar: params.avatar, 
+            address: params.address, 
+            location: params.location, 
+            phone: params.phone, 
+            tax: params.tax, 
+            rating: params.rating, 
+            description: params.description, 
+            services: params.services });
+    } else {
+        props = objectAssign({
+            services: []
+        }, { 
+            id: params.id,
+            name: params.name, 
+            avatar: params.avatar, 
+            address: params.address, 
+            location: params.location, 
+            phone: params.phone, 
+            tax: params.tax, 
+            rating: params.rating, 
+            description: params.description, 
+            services: params.services });
+    }
 
     this.id = props.id;
     this.name = props.name;

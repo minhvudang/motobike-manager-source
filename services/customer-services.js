@@ -30,7 +30,7 @@ CustomerService.prototype.update = function (customerProps, callback) {
     var customerInstance = null;
     var changedPropsObj = null;
 
-    self.customerRepository.findById(customerProps.id, null, function (err, customerObj) {
+    self.customerRepository.findById(customerProps.id, [], function (err, customerObj) {
         if (err) return callback(err);
         else if (!customerObj) return callback({
             type: 'Not Found'
