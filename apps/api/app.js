@@ -29,9 +29,11 @@ var readDataContext = require('../../repository/data-context')(config.readStore)
 //Read Repository
 var AgencyRepository = require('../../repository/agency-repository');
 var UserRepository = require('../../repository/user-repository');
+var CustomerRepository = require('../../repository/customer-repository');
 
 var agencyRepository = new AgencyRepository(readDataContext);
 var userRepository = new UserRepository(readDataContext);
+var customerRepository = new CustomerRepository(readDataContext);
 
 /* ===== End  ===== */
 
@@ -40,9 +42,11 @@ var userRepository = new UserRepository(readDataContext);
 //Write Service
 var AgencyService = require('../../services/agency-services');
 var UserService = require('../../services/user-services');
+var CustomerService = require('../../services/customer-services');
 
 var agencyWriteService = new AgencyService(agencyRepository);
 var userWriteService = new UserService(userRepository);
+var customerWriteService = new UserService(customerRepository);
 
 /* ===== End  ===== */
 
@@ -50,14 +54,17 @@ var userWriteService = new UserService(userRepository);
 
 var AgencyController = require('../api/controllers/agency-controller');
 var UserController = require('../api/controllers/user-controller');
+var CustomerController = require('../api/controllers/customer-controller');
 
 var agencyController = new AgencyController(agencyWriteService, agencyRepository);
 var userController = new UserController(userWriteService, userRepository);
+var customerController = new CustomerController(customerWriteService, customerRepository);
 
 /* ===== End  ===== */
 
 require('./routes/agency-routes')(app, agencyController);
 require('./routes/user-routes')(app, userController);
+require('./routes/customer-routes')(app, customerController);
 
 app.use(function(err, req, res, next) {
     console.error(new Date() + " - " + err.stack);

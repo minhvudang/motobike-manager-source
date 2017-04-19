@@ -33,4 +33,4 @@ function validate(rules, obj) {
     });
 }
 
-module.exports = User;
+module.exports = Customer;

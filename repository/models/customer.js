@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
             alowNull: false
         },
         agencies: {
-            type: DataTypes.STRING(12),
+            type: DataTypes.TEXT,
             alowNull: false
         }
     })

@@ -25,7 +25,7 @@ AgencyRepository.prototype.findById = function(id, select, callback) {
 AgencyRepository.prototype.findAll = function(condition, orderBy, select, page, limit, callback) {
     this.Agency
         .findAll({
-            attributes: select.length ? select : null,
+            attributes: select.length ? select : {exclude: ['services']},
             where: condition ? condition : null,
             order: orderBy ? orderBy : null,
             limit: limit,
