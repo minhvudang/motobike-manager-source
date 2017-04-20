@@ -12,7 +12,7 @@ AgencyRepository.prototype.findById = function(id, select, callback) {
             where: { 'id': id }
         })
         .then(function(result) {
-            if(result.services) {
+            if(result&&result.services) {
                 result.services = JSON.parse(result.services);
             }
             callback(null, result);
@@ -26,7 +26,11 @@ AgencyRepository.prototype.findAll = function(condition, orderBy, select, page, 
     this.Agency
         .findAll({
             attributes: select.length ? select : {exclude: ['services']},
-            where: condition ? condition : null,
+            where: {
+                name: {
+                    $like: "%"+condition.name+"%"
+                }
+            },
             order: orderBy ? orderBy : null,
             limit: limit,
             offset: page * limit

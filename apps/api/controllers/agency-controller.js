@@ -29,6 +29,10 @@ AgencyController.prototype.getAgencies = function (req, res, next) {
     var condition = req.where;
     var orderBy = req.options.sort;
 
+    if(!condition.name) {
+       condition.name = ""; 
+    }
+
     dependencies.agencyRepository.findAll(condition, orderBy, select, page, limit, function (err, agencies) {
         if (err) {
             next(err);

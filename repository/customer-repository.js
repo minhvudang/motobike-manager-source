@@ -12,7 +12,7 @@ CustomerRepository.prototype.findById = function(id, select, callback) {
             where: { 'id': id }
         })
         .then(function(result) {
-            if(result.agencies) {
+            if(result&&result.agencies) {
                 result.agencies = JSON.parse(result.agencies);
             }
             callback(null, result);
