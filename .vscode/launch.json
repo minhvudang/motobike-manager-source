@@ -19,7 +19,7 @@
            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
             "stopOnEntry": false,
             "args": [
-                "tests/customer-repository-test.js"
+                "tests/*.js"
             ],
             "cwd": "${workspaceRoot}",
             "runtimeExecutable": null,

@@ -32,10 +32,10 @@ UserRepository.prototype.save = function(userObj, callback) {
         });
 }
 
-UserRepository.prototype.update = function(id, userObj, callback) {
+UserRepository.prototype.update = function(userObj, callback) {
     this.User
         .update(userObj, { 
-            where: { 'id': id } 
+            where: { 'id': userObj.id } 
         })
         .then(function(result) {
             if(result.every(function(val){

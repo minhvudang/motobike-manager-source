@@ -9,7 +9,7 @@ var Service = require('./service');
 var Agency = function(params) {
     var self = this;
     var props = null;
-    console.log(params.id);
+    
     if (!params.id) {
         props = objectAssign({
             id: shortid.generate(),
@@ -90,6 +90,9 @@ Agency.prototype.addService = function(serviceProps) {
     var currentValue = objectAssign({}, this);
 
     var service = new Service(serviceProps);
+    if(!this.services) {
+        this.services = [];
+    }
     this.services.push(service);
 
     var changed = diff(currentValue, this);

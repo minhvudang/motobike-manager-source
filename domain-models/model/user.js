@@ -6,16 +6,31 @@ var rules = require('../rules/user-rules');
 
 var User = function (params) {
     var self = this;
+    var props = null;
 
-    var props = objectAssign({
-        id: shortid.generate(),
-    }, params);
+    if (!params.id) {
+        props = objectAssign({
+            id: shortid.generate(),
+        }, { 
+            userName: params.userName,
+            password: params.password,
+            userType: params.userType
+    })} else {
+        props = objectAssign({
+        }, { 
+            id: params.id,
+            userName: params.userName,
+            password: params.password,
+            userType: params.userType
+    })}
 
     self.id = props.id;
     self.userName = props.userName;
     self.password = props.password;
-    self.userType = props.userType;
-
+    if(props.userType) {
+        self.userType = props.userType;
+    }
+    
     validate(rules, self);
 }
 

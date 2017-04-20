@@ -24,11 +24,11 @@ UserController.prototype.getUser = function (req, res, next) {
 
 UserController.prototype.updateUser = function (req, res, next) {
     //TODO Validate props
-    var userName = req.params.username;
-    var password = req.params.password;
-    var userObj = req.body;
+    var userName = req.query.username;
+    var password = req.query.password;
+    var newPass = req.query.newpass;
 
-    dependencies.userWriteService.update(userName, password, userObj.newPassword, function (err, updatedUser) {
+    dependencies.userWriteService.update(userName, password, newPass, function (err, updatedUser) {
         if (err) {
             next(err);
         } else {

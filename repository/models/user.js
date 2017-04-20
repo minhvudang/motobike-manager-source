@@ -1,13 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define('UserAccount', {
+        userName: {
+            type: DataTypes.STRING(30),
+            alowNull: false,
+            unique: true,
+            primaryKey: true
+        },
         id: {
             type: DataTypes.STRING(14),
-            unique: true,
-            primaryKey: true,
-            alowNull: false
-        },
-        username: {
-            type: DataTypes.STRING(30),
             alowNull: false
         },
         password: {

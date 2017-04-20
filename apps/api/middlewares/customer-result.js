@@ -35,7 +35,7 @@ exports.updateCustomer = function(req, res) {
     } else {
         return res.status(404).send({
             result: false,
-            msg: 'nothing to created'
+            msg: 'nothing to updated'
         })
     }
 }
@@ -46,7 +46,7 @@ exports.addService = function(req, res) {
     } else {
         return res.status(404).send({
             result: false,
-            msg: 'nothing to updated'
+            msg: 'nothing to added'
         })
     }
 }

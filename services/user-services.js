@@ -30,10 +30,10 @@ UserService.prototype.update = function (username, password, newPassword, callba
     var userObj = null;
     var userInstance = null;
     var changedPropsObj = null;
-    var change = null;
-
-    change.userName = userName;
-    change.password = newPassword;
+    var change = {
+        userName: username,
+        password: newPassword
+    }
 
     self.userRepository.findUser(username, password, function (err, userObj) {
         if (err) return callback(err);

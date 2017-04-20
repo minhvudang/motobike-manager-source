@@ -4,7 +4,7 @@ module.exports = function(app, userController){
     app.route('/users/login')
         .get(userController.getUser, 
              userResultMiddleWare.getUser);
-    app.route('/users/changepass')
+    app.route('/users/change')
         .put(userController.updateUser,
             userResultMiddleWare.updateUser);
     app.route('/users/create')

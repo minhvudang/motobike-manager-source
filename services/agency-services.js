@@ -66,7 +66,6 @@ AgencyService.prototype.addService = function (agencyId ,serviceProps, callback)
     self.agencyRepository.findById(agencyId, [] , function (err, agencyObj) {
         if (err) return callback(err);
         else if (!agencyObj) return callback(null, null);
-        console.log(agencyObj.services[0]);
         try {
             agencyInstance = new Agency(agencyObj);
             changedPropsObj = agencyInstance.addService(serviceProps);

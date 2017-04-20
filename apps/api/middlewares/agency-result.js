@@ -24,7 +24,7 @@ exports.getService = function(req, res) {
     } else {
         return res.status(404).send({
             result: false,
-            msg: 'nothing to created'
+            msg: 'Not Found'
         })
     }
 }
@@ -46,7 +46,7 @@ exports.updateAgency = function(req, res) {
     } else {
         return res.status(404).send({
             result: false,
-            msg: 'nothing to created'
+            msg: 'nothing to updated'
         })
     }
 }
@@ -68,7 +68,7 @@ exports.updateService = function(req, res) {
     } else {
         return res.status(404).send({
             result: false,
-            msg: 'nothing to added'
+            msg: 'nothing to updated'
         })
     }
 }
