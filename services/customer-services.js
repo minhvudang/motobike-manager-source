@@ -78,18 +78,15 @@ CustomerService.prototype.addService = function (customerId, agencyId, serviceId
                 err: err
             });
         };
-        if(changedPropsObj) {
+    
             self.customerRepository.update(customerInstance, function (err, result) {
                 if (err) return callback(err);
                 if (!result) return callback({
                     type: 'Request Failed'
                 })
 
-                return callback(null, true);
+                return callback(null, customerInstance);
             });
-        } else {
-            callback(null, false)
-        }
     });
 }
 

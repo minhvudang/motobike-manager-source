@@ -75,15 +75,9 @@ Customer.prototype.addService = function(agencyId, serviceId) {
 
     if(agency) {
         if(agency.serviceIds) {
-            var sId = agency.serviceIds.find(function(s) {
-                return s == serviceId;
-            })
-
-            if(!sId) {
                 agency.serviceIds.push(serviceId);
-            } else {
+
                 return false;
-            }
         } else {
             agency.serviceIds = [serviceId];
         }
@@ -96,7 +90,7 @@ Customer.prototype.addService = function(agencyId, serviceId) {
         this.agencies.push(agency);
     }
 
-    return true;
+    return agency;
 }
 
 function validate(rules, obj) {
