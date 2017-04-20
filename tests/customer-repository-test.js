@@ -17,9 +17,9 @@ describe('Create new agency', function(){
         dataContext.sequelize.sync().then(function() {
             var customerObj = {
                 id: shortid.generate(),
-                name: 'Quang cho',
-                produce: 'tau khua',
-                motoType: 'wave',
+                name: 'Quang Phung',
+                produce: 'China',
+                motoType: 'Wave Alpha',
                 address: 'Bach Khoa',
                 phoneNumber: 965394786,
                 agencies: [{

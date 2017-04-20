@@ -20,7 +20,7 @@ describe('Create new agency', function(){
                 name: 'Yamaha',
                 avatar: '/1.jpg',
                 address: 'Ha Noi',
-                location: 'Bach Khoa',
+                location: '105.85965095-20.9939911',
                 phone: 965394786,
                 tax: 'Ha Noi',
                 rating: 3.14,
@@ -32,7 +32,7 @@ describe('Create new agency', function(){
                     price: 300000,
                     type: 'normal',
                     total: 270000,
-                    sale: 30000
+                    sale: 30
                 }]
             }
 
