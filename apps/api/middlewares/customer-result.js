@@ -39,3 +39,14 @@ exports.updateCustomer = function(req, res) {
         })
     }
 }
+
+exports.addService = function(req, res) {
+    if(res.customer) {
+        return res.status(200).send(res.customer);
+    } else {
+        return res.status(404).send({
+            result: false,
+            msg: 'nothing to updated'
+        })
+    }
+}

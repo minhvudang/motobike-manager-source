@@ -7,7 +7,7 @@ var UserRepository = function(dbContext) {
 
 UserRepository.prototype.findUser = function(userName, password, callback) {
     this.User
-        .findAll({
+        .findOne({
             where: { 
                 'username': userName,
                 'password': password

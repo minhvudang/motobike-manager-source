@@ -67,4 +67,19 @@ CustomerController.prototype.createCustomer = function (req, res, next) {
     });
 }
 
+CustomerController.prototype.addService = function (req, res, next) {
+    var customerId = req.params.customerId;
+    var agencyId = req.query.agencyId;
+    var serviceId = req.query.serviceId;
+
+    dependencies.customerWriteService.addService(customerId, agencyId, serviceId , function(err, customer) {
+        if(err) {
+            next(err);
+        } else {
+            res.customer = customer;
+            next();
+        }
+    });
+}
+
 module.exports = CustomerController;

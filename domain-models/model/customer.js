@@ -68,6 +68,37 @@ Customer.prototype.update = function(params) {
     return changed;
 }
 
+Customer.prototype.addService = function(agencyId, serviceId) {
+    var agency = this.agencies.find(function(a) {
+        return a.id == agencyId;
+    });
+
+    if(agency) {
+        if(agency.serviceIds) {
+            var sId = agency.serviceIds.find(function(s) {
+                return s == serviceId;
+            })
+
+            if(!sId) {
+                agency.serviceIds.push(serviceId);
+            } else {
+                return false;
+            }
+        } else {
+            agency.serviceIds = [serviceId];
+        }
+    } else {
+        agency = {
+            id: agencyId,
+            serviceIds: [serviceId]
+        }
+
+        this.agencies.push(agency);
+    }
+
+    return true;
+}
+
 function validate(rules, obj) {
     validator.run(rules, obj, function (errorCount, errors) {
         if (errorCount > 0) throw errors;

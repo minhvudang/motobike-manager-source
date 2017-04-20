@@ -9,8 +9,8 @@ function UserController(userWriteService, userRepository) {
 }
 
 UserController.prototype.getUser = function (req, res, next) {
-    var userName = req.params.username;
-    var password = req.params.password;
+    var userName = req.query.username;
+    var password = req.query.password;
 
     dependencies.userRepository.findUser(userName, password, function (err, user) {
         if (err) {

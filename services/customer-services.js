@@ -57,4 +57,40 @@ CustomerService.prototype.update = function (customerProps, callback) {
     });
 }
 
+CustomerService.prototype.addService = function (customerId, agencyId, serviceId, callback) {
+    var self = this;
+    var customerObj = null;
+    var customerInstance = null;
+    var changedPropsObj = null;
+
+    self.customerRepository.findById(customerId, [], function (err, customerObj) {
+        if (err) return callback(err);
+        else if (!customerObj) return callback({
+            type: 'Not Found'
+        });
+
+        try {
+            customerInstance = new Customer(customerObj);
+            changedPropsObj = customerInstance.addService(agencyId, serviceId);
+        } catch (err) {
+            return callback({
+                type: 'Bad Request',
+                err: err
+            });
+        };
+        if(changedPropsObj) {
+            self.customerRepository.update(customerInstance, function (err, result) {
+                if (err) return callback(err);
+                if (!result) return callback({
+                    type: 'Request Failed'
+                })
+
+                return callback(null, true);
+            });
+        } else {
+            callback(null, false)
+        }
+    });
+}
+
 module.exports = CustomerService;
